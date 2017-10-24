@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/profile"
+            android:icon="@mipmap/ic_home_black_24dp"
+            android:title="@string/profile" />
+
+        <item
+            android:id="@+id/store"
+            android:icon="@mipmap/ic_local_mall_black_24dp"
+            android:title="@string/store" />
+
+        <item
+            android:id="@+id/shopping_cart"
+            android:icon="@mipmap/ic_shopping_cart_black_24dp"
+            android:title="@string/shopping_cart" />
+
+        <!-- Settings, should always be in the overflow -->
+        <item
+            android:id="@+id/app_settings"
+            android:icon="@mipmap/ic_settings_black_24dp"
+            android:title="@string/app_settings" />
+
+        <item
+            android:id="@+id/logout"
+            android:icon="@mipmap/ic_person_outline_black_24dp"
+            android:title="@string/logout" />
+    </group>
+
+</menu>
