@@ -13,7 +13,7 @@ public class ProductTable
 
     public String createQuery()
     {
-        return "CREATE TABLE " + TableName + " (" +
+        return "CREATE TABLE '" + TableName + "' (" +
                 ColumnId + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 ColumnProductName + " VARCHAR NOT NULL, " +
                 ColumnProductDescription + " VARCHAR NOT NULL, " +

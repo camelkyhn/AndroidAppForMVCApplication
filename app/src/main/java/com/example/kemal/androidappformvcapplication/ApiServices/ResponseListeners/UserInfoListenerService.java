@@ -45,12 +45,7 @@ public class UserInfoListenerService
                         userService.insert(user);
 
                         //We will bring the user to his/her profile with these informations.
-                        Intent intent = new Intent(context, UserAreaActivity.class);
-                        intent.putExtra("email", email);
-                        intent.putExtra("firstName", firstName);
-                        intent.putExtra("lastName", lastName);
-
-                        context.startActivity(intent);
+                        context.startActivity(new Intent(context, UserAreaActivity.class));
                     }
                     else
                     {

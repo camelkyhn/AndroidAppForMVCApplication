@@ -3,14 +3,13 @@ package com.example.kemal.androidappformvcapplication.ApiServices.ResponseListen
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
+import com.example.kemal.androidappformvcapplication.ApiServices.Requests.CartRequest;
 import com.example.kemal.androidappformvcapplication.ApiServices.Requests.UserInfoRequest;
 import com.example.kemal.androidappformvcapplication.BLL.DataServices.TokenService;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,11 +37,18 @@ public class LoginListenerService
                         TokenService tokenService = new TokenService(context);
                         tokenService.insert(responseJson);
 
+                        //Get the cart if he/she got items in his/her shopping cart before.
+                        CartListenersService cartListenersService = new CartListenersService(context);
+                        CartRequest cartRequest = new CartRequest(responseJson.getString("userName"), cartListenersService.getListener(), cartListenersService.getErrorListener());
+
+
                         //We must create a request for user information to create his/her profile.
                         //And it will bring us to profile side if user information comes successful.
                         UserInfoListenerService service = new UserInfoListenerService(context);
                         UserInfoRequest userInfoRequest = new UserInfoRequest(service.getListener(), service.getErrorListener(), access_token);
+
                         RequestQueue requestQueue = Volley.newRequestQueue(context);
+                        requestQueue.add(cartRequest);
                         requestQueue.add(userInfoRequest);
                     }
                     else

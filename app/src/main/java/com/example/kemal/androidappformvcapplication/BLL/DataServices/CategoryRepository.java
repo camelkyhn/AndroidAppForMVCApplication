@@ -53,7 +53,7 @@ public class CategoryRepository implements IRepository<Category>
                 database.insert("Category", null, contentValues);
 
                 String categoryData = String.format("Id: %d, Name: %s, Description: %s", Id, CategoryName, Description);
-                Log.i(TAG, "inserting " + categoryData);
+                Log.i(TAG, "Inserting " + categoryData);
             }
             database.close();
         }

@@ -22,7 +22,11 @@
         <activity android:name=".UserAreaActivity" />
         <activity android:name=".ProductActivity" />
         <activity android:name=".ProductListActivity" />
-        <activity android:name=".StoreActivity"></activity>
+        <activity android:name=".StoreActivity" />
+        <activity android:name=".CartActivity" />
+        <activity android:name=".OrderActivity" />
+        <activity android:name=".OrderSuccessActivity" />
+        <!--<activity android:name=".BaseActivity" />-->
     </application>
 
 </manifest>

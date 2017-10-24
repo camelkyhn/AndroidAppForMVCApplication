@@ -12,7 +12,7 @@ public class TokenTable
 
     public String createQuery()
     {
-        return "CREATE TABLE " + TableName + " (" +
+        return "CREATE TABLE '" + TableName + "' (" +
                 access_token + " VARCHAR NOT NULL, " +
                 token_type + " VARCHAR NOT NULL, " +
                 expires_in + " INTEGER NOT NULL, " +

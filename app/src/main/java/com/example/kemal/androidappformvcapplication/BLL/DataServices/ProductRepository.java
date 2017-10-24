@@ -62,7 +62,7 @@ public class ProductRepository implements IRepository<Product>
 
                 String productData = String.format("Id: %d, Name: %s, Description: %s, Stock: %d, ImagePath: %s, Price: %f, CategoryId: %d"
                         ,Id,ProductName,ProductDescription,Stock,ImagePath,Price,CategoryId);
-                Log.i(TAG, "inserting : " + productData);
+                Log.i(TAG, "Inserting : " + productData);
             }
             database.close();
         }
@@ -147,7 +147,6 @@ public class ProductRepository implements IRepository<Product>
                     cursor.getDouble(productPriceIndex),
                     cursor.getInt(productCategoryIdIndex)));
         }
-
         database.close();
         //Return List
         return productList;
@@ -184,7 +183,6 @@ public class ProductRepository implements IRepository<Product>
                     cursor.getInt(productCategoryIdIndex)
             ));
         }
-
         database.close();
         return productList.get(0);
     }

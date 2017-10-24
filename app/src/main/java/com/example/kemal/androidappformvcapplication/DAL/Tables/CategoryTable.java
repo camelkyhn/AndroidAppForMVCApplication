@@ -9,7 +9,7 @@ public class CategoryTable
 
     public String createQuery()
     {
-        return "CREATE TABLE " + TableName + " (" +
+        return "CREATE TABLE '" + TableName + "' (" +
                 ColumnId + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 ColumnCategoryName + " VARCHAR NOT NULL, " +
                 ColumnDescription + " VARCHAR NOT NULL);";

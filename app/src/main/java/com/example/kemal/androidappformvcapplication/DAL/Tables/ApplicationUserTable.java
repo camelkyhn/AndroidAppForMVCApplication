@@ -12,7 +12,7 @@ public class ApplicationUserTable
 
     public String createQuery()
     {
-        return "CREATE TABLE " + TableName + " (" +
+        return "CREATE TABLE '" + TableName + "' (" +
                 ColumnId + " VARCHAR PRIMARY KEY, " +
                 ColumnFirstName + " VARCHAR NOT NULL, " +
                 ColumnLastName + " VARCHAR NOT NULL, " +

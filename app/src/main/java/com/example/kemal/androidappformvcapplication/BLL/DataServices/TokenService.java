@@ -9,6 +9,8 @@ import com.example.kemal.androidappformvcapplication.DAL.Database.DatabaseHelper
 import com.example.kemal.androidappformvcapplication.DAL.Tables.TokenTable;
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TokenService
 {
@@ -59,16 +61,52 @@ public class TokenService
     public String findTokenByUserName(String userName)
     {
         SQLiteDatabase database = dbHelper.open();
-
+        List<String> stringList = new ArrayList<>(1);
         String query = "SELECT * FROM " + tokenTable.getTableName() + " WHERE " + tokenTable.getUserName() + "= " + userName + ";";
 
         //Cursor point to location in your results
         Cursor cursor = database.rawQuery(query, null);
 
         int access_tokenIndex = cursor.getColumnIndex(tokenTable.getAccess_token());
-        String token = cursor.getString(access_tokenIndex);
+        for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext())
+        {
+            stringList.add(cursor.getString(access_tokenIndex));
+        }
+        database.close();
+        if (stringList.isEmpty())
+        {
+            return null;
+        }
+        else
+        {
+            return stringList.get(0);
+        }
+    }
+
+    public String getToken()
+    {
+        SQLiteDatabase database = dbHelper.open();
+        List<String> stringList = new ArrayList<>(1);
+        String query = "SELECT * FROM '" + tokenTable.getTableName() + "';";
+
+        //Cursor point to location in your results
+        Cursor cursor = database.rawQuery(query, null);
+
+        int access_tokenIndex = cursor.getColumnIndex(tokenTable.getAccess_token());
+
+        for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext())
+        {
+            stringList.add(cursor.getString(access_tokenIndex));
+        }
 
         database.close();
-        return token;
+        if (stringList.isEmpty())
+        {
+            return null;
+        }
+        else
+        {
+            return stringList.get(0);
+        }
     }
 }

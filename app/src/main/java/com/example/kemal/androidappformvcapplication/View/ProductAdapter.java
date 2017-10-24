@@ -12,14 +12,13 @@ import android.widget.TextView;
 import com.example.kemal.androidappformvcapplication.Entities.Product;
 import com.example.kemal.androidappformvcapplication.ProductActivity;
 import com.example.kemal.androidappformvcapplication.R;
-
 import java.util.List;
 
 public class ProductAdapter extends ArrayAdapter<Product>
 {
     private final Activity Context;
-    private final java.util.List<Product> List;
-    protected View ConvertView;
+    private final List<Product> List;
+    private View ConvertView;
 
     public ProductAdapter(Activity context, List<Product> list)
     {

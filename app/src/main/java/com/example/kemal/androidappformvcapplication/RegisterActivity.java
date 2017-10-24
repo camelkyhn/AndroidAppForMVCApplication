@@ -1,6 +1,5 @@
 package com.example.kemal.androidappformvcapplication;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +10,7 @@ import com.example.kemal.androidappformvcapplication.ApiServices.Requests.Regist
 import com.example.kemal.androidappformvcapplication.ApiServices.ResponseListeners.RegisterListenerService;
 import com.example.kemal.androidappformvcapplication.Models.RegisterModel;
 
-public class RegisterActivity extends AppCompatActivity
+public class RegisterActivity extends BaseActivity
 {
     private EditText email, password, confirmPassword, firstName, lastName;
     private Button buttonRegister;
@@ -22,6 +21,9 @@ public class RegisterActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        setNavigationView(R.id.registerLayout, this);
+        navigationView.setNavigationItemSelectedListener(this);
 
         email = (EditText) findViewById(R.id.RegisterEmail);
         password = (EditText) findViewById(R.id.RegisterPassword);

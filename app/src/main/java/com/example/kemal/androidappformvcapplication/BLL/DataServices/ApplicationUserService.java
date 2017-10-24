@@ -8,6 +8,8 @@ import android.util.Log;
 import com.example.kemal.androidappformvcapplication.DAL.Database.DatabaseHelper;
 import com.example.kemal.androidappformvcapplication.DAL.Tables.ApplicationUserTable;
 import com.example.kemal.androidappformvcapplication.Entities.ApplicationUser;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ApplicationUserService
 {
@@ -44,6 +46,7 @@ public class ApplicationUserService
     public ApplicationUser findUserByUserName(String userName)
     {
         SQLiteDatabase database = dbHelper.open();
+        List<ApplicationUser> userList = new ArrayList<>(1);
 
         String query = "SELECT * FROM " + userTable.getTableName() + " WHERE " + userTable.getColumnUserName() + "= " + userName + ";";
 
@@ -56,16 +59,63 @@ public class ApplicationUserService
         int AddressIndex = cursor.getColumnIndex(userTable.getColumnAddress());
         int EmailIndex = cursor.getColumnIndex(userTable.getColumnEmail());
         int UserNameIndex = cursor.getColumnIndex(userTable.getColumnUserName());
-        ApplicationUser user = new ApplicationUser(
-                cursor.getString(IdIndex),
-                cursor.getString(FirstNameIndex),
-                cursor.getString(LastNameIndex),
-                cursor.getString(AddressIndex),
-                cursor.getString(EmailIndex),
-                cursor.getString(UserNameIndex)
-        );
-
+        for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext())
+        {
+            userList.add( new ApplicationUser(
+                    cursor.getString(IdIndex),
+                    cursor.getString(FirstNameIndex),
+                    cursor.getString(LastNameIndex),
+                    cursor.getString(AddressIndex),
+                    cursor.getString(EmailIndex),
+                    cursor.getString(UserNameIndex)
+            ));
+        }
         database.close();
-        return user;
+        if (userList.isEmpty())
+        {
+            return null;
+        }
+        else
+        {
+            return userList.get(0);
+        }
+    }
+
+    public ApplicationUser getUser()
+    {
+        SQLiteDatabase database = dbHelper.open();
+        List<ApplicationUser> userList = new ArrayList<>(1);
+
+        String query = "SELECT * FROM '" + userTable.getTableName() + "';";
+
+        //Cursor point to location in your results
+        Cursor cursor = database.rawQuery(query, null);
+
+        int IdIndex = cursor.getColumnIndex(userTable.getColumnId());
+        int FirstNameIndex = cursor.getColumnIndex(userTable.getColumnFirstName());
+        int LastNameIndex = cursor.getColumnIndex(userTable.getColumnLastName());
+        int AddressIndex = cursor.getColumnIndex(userTable.getColumnAddress());
+        int EmailIndex = cursor.getColumnIndex(userTable.getColumnEmail());
+        int UserNameIndex = cursor.getColumnIndex(userTable.getColumnUserName());
+        for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext())
+        {
+            userList.add( new ApplicationUser(
+                    cursor.getString(IdIndex),
+                    cursor.getString(FirstNameIndex),
+                    cursor.getString(LastNameIndex),
+                    cursor.getString(AddressIndex),
+                    cursor.getString(EmailIndex),
+                    cursor.getString(UserNameIndex)
+            ));
+        }
+        database.close();
+        if (userList.isEmpty())
+        {
+            return null;
+        }
+        else
+        {
+            return userList.get(0);
+        }
     }
 }
